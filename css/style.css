@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+
+/* ========================================
+   GRUNDEINSTELLUNGEN
+   ======================================== */
+
+:root {
+    --hintergrund: #171717;
+    --oberflaeche: #3c3938;
+
+    --rot-dunkel: #b20000;
+    --rot: #ef3200;
+    --orange: #ff7e00;
+    --gelb: #ffbf00;
+    --gelb-hell: #ffff00;
+
+    --schrift: #ffffff;
+    --schrift-gedeckt: #b6b6b6;
+
+    --rahmen: rgba(255, 255, 255, 0.12);
+    --glasflaeche: rgba(23, 23, 23, 0.65);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html {
+    min-height: 100%;
+}
+
+
+body {
+    min-height: 100vh;
+
+    font-family: "Inter", sans-serif;
+
+    color: var(--schrift);
+
+    background:
+        radial-gradient(
+            1000px 500px at 80% -10%,
+            rgba(239, 50, 0, 0.18),
+            transparent 60%
+        ),
+        radial-gradient(
+            800px 500px at 10% 100%,
+            rgba(178, 0, 0, 0.14),
+            transparent 60%
+        ),
+        var(--hintergrund);
+
+    line-height: 1.45;
+}
+
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+
+.navigation {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(23, 23, 23, 0.85),
+            rgba(23, 23, 23, 0.65)
+        );
+
+    border-bottom: 1px solid var(--rahmen);
+
+    backdrop-filter: blur(12px);
+
+    z-index: 100;
+}
+
+
+.navigation-inhalt {
+    max-width: 1600px;
+    min-height: 72px;
+
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/* ========================================
+   LOGO UND NAME
+   ======================================== */
+
+.marke {
+    display: flex;
+    align-items: center;
+
+    gap: 0.75rem;
+
+    color: var(--schrift);
+
+    text-decoration: none;
+
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+.logo {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+}
+
+
+/* ========================================
+   MENÜ
+   ======================================== */
+
+.menue {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+
+    list-style: none;
+}
+
+
+.menue a {
+    display: block;
+
+    padding: 0.6rem 0.8rem;
+
+    color: var(--schrift);
+
+    text-decoration: none;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    border-radius: 10px;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.menue a:hover {
+    background: rgba(239, 50, 0, 0.15);
+
+    color: var(--orange);
+
+    transform: translateY(-1px);
+}
+
+
+/* ========================================
+   MOBILES MENÜ
+   ======================================== */
+
+.menue-umschalter {
+    display: none;
+}
+
+
+.hamburger {
+    display: none;
+
+    width: 45px;
+    height: 45px;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid var(--rahmen);
+    border-radius: 12px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    cursor: pointer;
+}
+
+
+.hamburger span,
+.hamburger span::before,
+.hamburger span::after {
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    background: var(--schrift);
+
+    position: relative;
+
+    transition:
+        transform 0.25s ease,
+        top 0.25s ease,
+        background 0.25s ease;
+
+    content: "";
+}
+
+
+.hamburger span::before {
+    position: absolute;
+
+    top: -6px;
+}
+
+
+.hamburger span::after {
+    position: absolute;
+
+    top: 6px;
+}
+
+
+/* ========================================
+   HAUPTINHALT
+   ======================================== */
+
+.hauptinhalt {
+    min-height: calc(100vh - 72px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem;
+}
+
+
+.hauptinhalt-inhalt {
+    width: 100%;
+    max-width: 1000px;
+
+    text-align: center;
+}
+
+
+.hauptinhalt h1 {
+    margin-bottom: 1rem;
+
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+
+    text-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+
+.hauptinhalt p {
+    color: var(--schrift-gedeckt);
+
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+}
+
+
+/* ========================================
+   RESPONSIVES DESIGN
+   ======================================== */
+
+@media (max-width: 900px) {
+
+    .navigation-inhalt {
+        min-height: 64px;
+
+        padding: 0 1rem;
+    }
+
+
+    .logo {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .marke {
+        font-size: 1.1rem;
+    }
+
+
+    .menue {
+        position: absolute;
+
+        top: 100%;
+        left: 0;
+        right: 0;
+
+        flex-direction: column;
+        align-items: center;
+
+        gap: 0;
+
+        background: rgba(23, 23, 23, 0.95);
+
+        backdrop-filter: blur(12px);
+
+        max-height: 0;
+
+        padding: 0;
+
+        overflow: hidden;
+
+        opacity: 0;
+        pointer-events: none;
+
+        transition:
+            max-height 0.4s ease,
+            opacity 0.4s ease,
+            padding 0.4s ease;
+    }
+
+
+    .menue li {
+        width: 90%;
+
+        border-bottom: 1px solid var(--rahmen);
+
+        text-align: center;
+    }
+
+
+    .menue a {
+        width: 100%;
+
+        padding: 1rem 0;
+    }
+
+
+    .menue-umschalter:checked ~ .menue {
+        max-height: 100vh;
+
+        padding: 1rem 0;
+
+        opacity: 1;
+
+        pointer-events: auto;
+    }
+
+
+    .hamburger {
+        display: flex;
+    }
+
+
+    .menue-umschalter:checked ~ .hamburger span {
+        background: transparent;
+    }
+
+
+    .menue-umschalter:checked ~ .hamburger span::before {
+        top: 0;
+
+        transform: rotate(45deg);
+    }
+
+
+    .menue-umschalter:checked ~ .hamburger span::after {
+        top: 0;
+
+        transform: rotate(-45deg);
+    }
+}
