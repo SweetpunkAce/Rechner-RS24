@@ -4,19 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ruhrpott Survivors Cluster Rechner</title>
+    <title>Ruhrpott Survivors</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>Ruhrpott Survivors Cluster Rechner</h1>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="navigation-inhalt">
 
-    <p id="status">Pyodide wird geladen...</p>
+            <!-- Logo und Name -->
+            <a href="#" class="marke">
+                <img
+                    src="Logo_RS.png"
+                    alt="Ruhrpott Survivors"
+                    class="logo"
+                >
 
-    <script src="https://cdn.jsdelivr.net/pyodide/v0.29.0/full/pyodide.js"></script>
-    <script src="js/pyodide.js"></script>
+                <span>Ruhrpott Survivors</span>
+            </a>
+
+            <!-- Umschalter für das mobile Menü -->
+            <input
+                type="checkbox"
+                id="menue-umschalter"
+                class="menue-umschalter"
+            >
+
+            <!-- Menüpunkte -->
+            <ul class="menue">
+                <!--
+                Spätere Menüpunkte kommen hier hinein.
+
+                Beispiel:
+
+                <li>
+                    <a href="#">Rechner</a>
+                </li>
+
+                <li>
+                    <a href="#">Regelwerk</a>
+                </li>
+
+                <li>
+                    <a href="#">Team</a>
+                </li>
+                -->
+            </ul>
+
+            <!-- Mobiles Menü -->
+            <label
+                for="menue-umschalter"
+                class="hamburger"
+                aria-label="Menü öffnen"
+            >
+                <span></span>
+            </label>
+
+        </div>
+    </nav>
+
+
+    <!-- Hauptinhalt -->
+    <main class="hauptinhalt">
+
+        <div class="hauptinhalt-inhalt">
+
+            <h1>Ruhrpott Survivors</h1>
+
+            <p>
+                Willkommen bei den Ruhrpott Survivors.
+            </p>
+
+        </div>
+
+    </main>
 
 </body>
 </html>

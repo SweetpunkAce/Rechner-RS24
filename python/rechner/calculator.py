@@ -1,43 +1,86 @@
-from .pricing import calculate_base_price
-from .mutations import calculate_mutation_price
-from .validation import validate_input
+from .pricing import (
+    berechne_basispreis,
+    berechne_preisempfehlung,
+    berechne_kastrationspreis,
+    berechne_essenz,
+)
+from .mutations import berechne_mutationswert
+from .validation import pruefe_level
 
-def calculate_price(
-        category,
+
+SHINY_AUFPREIS = 30000
+
+
+def berechne_preis(
+        kategorie,
         level,
-        mutations=None,
+        mutationen=None,
         shiny=False,
-        castrated=False,
+        kastriert=False,
 ):
-
     """
-    Zentrale Schnittstelle für die Preisberechnung
-    
-    Die eigentliche Berechnung wird von den einzelnen Modulen übernommen
+    Zentrale Schnittstelle für die Dino-Preisberechnung.
+
+    Gesamtpreis und Preisempfehlung werden getrennt berechnet.
+    Kastration und Shiny werden separat berücksichtigt.
     """
 
-    if mutations is None:
-        mutations = {}
+    if mutationen is None:
+        mutationen = []
 
-    validate_input(
-        category=category,
+    pruefe_level(level)
+
+    level = int(level)
+
+    mutationswert = berechne_mutationswert(
+        mutationen=mutationen,
+    )
+
+    basispreis = berechne_basispreis(
+        kategorie=kategorie,
         level=level,
-        mutations=mutations,
     )
 
-    base_price = calculate_base_price(
-        category=category,
+    preisempfehlung = berechne_preisempfehlung(
+        kategorie=kategorie,
         level=level,
+        mutationswert=mutationswert,
     )
 
-    mutation_price = calculate_mutation_price(
-        mutations=mutations,
+    basispreis = berechne_kastrationspreis(
+        kategorie=kategorie,
+        preis=basispreis,
+        kastriert=kastriert,
     )
 
-    shiny_price = 0
+    preisempfehlung = berechne_kastrationspreis(
+        kategorie=kategorie,
+        preis=preisempfehlung,
+        kastriert=kastriert,
+    )
 
     if shiny:
-        # wird später durch die Shiny Regel ersetzt
-        shiny_price = 0
+        basispreis += SHINY_AUFPREIS
+        preisempfehlung += SHINY_AUFPREIS
 
-    total_price = base_price + mutation_price + shiny_price
+    return {
+        "gesamtpreis": basispreis,
+        "preisempfehlung": preisempfehlung,
+    }
+
+
+def berechne_essenzpreis(kategorie, anzahl=1):
+    """
+    Berechnet den Gesamtpreis von Essenzen
+    anhand der Tierkategorie und Anzahl.
+
+    Essenzen sind eigenständige Items und werden
+    unabhängig von Level, Mutationen, Shiny
+    und Kastration berechnet.
+    """
+
+    essenzpreis = berechne_essenz(
+        kategorie=kategorie,
+    )
+
+    return essenzpreis * anzahl
