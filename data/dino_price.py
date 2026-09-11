@@ -1,7 +1,7 @@
 TIERKATEGORIEN = {
     "schultertier": {
         "bezeichnung": "Schultertier / Nicht reitbares Tier",
-        "symbol": "tiers/schultertier.png",
+        "symbol": "assets/icons/tiere/schultertier.png",
         "preise": {
             "Stufe 1": 2500,    # Level bis 224
             "Stufe 2": 5000,    # Level 225–450
@@ -15,7 +15,7 @@ TIERKATEGORIEN = {
 
     "companion": {
         "bezeichnung": "Companion / Begleiter",
-        "symbol": "tiers/companion.png",
+        "symbol": "assets/icons/tiere/companion.png",
         "preise": {
             "Stufe 1": 5000,    # Level bis 224
             "Stufe 2": 10000,   # Level 225–450
@@ -29,7 +29,7 @@ TIERKATEGORIEN = {
 
     "normal": {
         "bezeichnung": "Normales Tier",
-        "symbol": "tiers/normal.png",
+        "symbol": "assets/icons/tiere/normal.png",
         "preise": {
             "Stufe 1": 10000,   # Level bis 224
             "Stufe 2": 20000,   # Level 225–450
@@ -43,7 +43,7 @@ TIERKATEGORIEN = {
 
     "boss": {
         "bezeichnung": "Boss-Tier",
-        "symbol": "tiers/boss.png",
+        "symbol": "assets/icons/tiere/boss.png",
         "preise": {
             "Stufe 1": 15000,   # Level bis 224
             "Stufe 2": 35000,   # Level 225–450
@@ -57,7 +57,7 @@ TIERKATEGORIEN = {
 
     "eier": {
         "bezeichnung": "Eier-Dino",
-        "symbol": "tiers/eier.png",
+        "symbol": "assets/icons/tiere/eier.png",
         "preise": {
             "Stufe 1": 20000,   # Level bis 224
             "Stufe 2": 50000,   # Level 225–450
@@ -71,7 +71,7 @@ TIERKATEGORIEN = {
 
     "spezial": {
         "bezeichnung": "Spezial-Tier",
-        "symbol": "tiers/spezial.png",
+        "symbol": "assets/icons/tiere/spezial.png",
         "preise": {
             "Stufe 1": 30000,    # Level bis 224
             "Stufe 2": 80000,    # Level 225–450
@@ -85,7 +85,7 @@ TIERKATEGORIEN = {
 
     "element_gacha": {
         "bezeichnung": "Element-Gacha",
-        "symbol": "tiers/element_gacha.png",
+        "symbol": "assets/icons/tiere/element_gacha.png",
         "preise": {
             "Stufe 1": 10000,   # Level bis 224
             "Stufe 2": 10000,   # Level 225–450
