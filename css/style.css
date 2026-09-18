@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-
 /* ========================================
    GRUNDEINSTELLUNGEN
    ======================================== */
@@ -8,20 +7,16 @@
 :root {
     --hintergrund: #171717;
     --oberflaeche: #3c3938;
-
     --rot-dunkel: #b20000;
     --rot: #ef3200;
     --orange: #ff7e00;
     --gelb: #ffbf00;
     --gelb-hell: #ffff00;
-
     --schrift: #ffffff;
     --schrift-gedeckt: #b6b6b6;
-
     --rahmen: rgba(255, 255, 255, 0.12);
     --glasflaeche: rgba(23, 23, 23, 0.65);
 }
-
 
 * {
     margin: 0;
@@ -29,35 +24,57 @@
     box-sizing: border-box;
 }
 
-
 html {
     min-height: 100%;
 }
 
-
 body {
+    position: relative;
     min-height: 100vh;
-
     font-family: "Inter", sans-serif;
-
     color: var(--schrift);
-
-    background:
-        radial-gradient(
-            1000px 500px at 80% -10%,
-            rgba(239, 50, 0, 0.18),
-            transparent 60%
-        ),
-        radial-gradient(
-            800px 500px at 10% 100%,
-            rgba(178, 0, 0, 0.14),
-            transparent 60%
-        ),
-        var(--hintergrund);
-
+    background: var(--hintergrund);
     line-height: 1.45;
+    overflow-x: hidden;
 }
 
+/* ========================================
+   LOGO ALS HINTERGRUND
+   ======================================== */
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: min(80vw, 1100px);
+    height: min(80vw, 1100px);
+    transform: translate(-50%, -50%);
+    background-image: url("Logo_RS.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.20;
+    filter: blur(12px);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Dunkle Ebene über dem Hintergrundlogo */
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(23, 23, 23, 0.20),
+            rgba(23, 23, 23, 0.78)
+        );
+    z-index: -1;
+    pointer-events: none;
+}
 
 /* ========================================
    NAVIGATION
@@ -66,36 +83,27 @@ body {
 .navigation {
     position: sticky;
     top: 0;
-
     width: 100%;
-
     background:
         linear-gradient(
             180deg,
-            rgba(23, 23, 23, 0.85),
-            rgba(23, 23, 23, 0.65)
+            rgba(23, 23, 23, 0.88),
+            rgba(23, 23, 23, 0.68)
         );
-
     border-bottom: 1px solid var(--rahmen);
-
     backdrop-filter: blur(12px);
-
     z-index: 100;
 }
-
 
 .navigation-inhalt {
     max-width: 1600px;
     min-height: 72px;
-
     margin: 0 auto;
-    padding: 0 2rem;
-
+    padding: 0 1.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
 
 /* ========================================
    LOGO UND NAME
@@ -104,27 +112,19 @@ body {
 .marke {
     display: flex;
     align-items: center;
-
-    gap: 0.75rem;
-
+    gap: 0.65rem;
     color: var(--schrift);
-
     text-decoration: none;
-
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
     font-weight: 700;
-
     white-space: nowrap;
 }
 
-
 .logo {
-    width: 48px;
-    height: 48px;
-
+    width: 90px;
+    height: 90px;
     object-fit: contain;
 }
-
 
 /* ========================================
    MENÜ
@@ -133,42 +133,29 @@ body {
 .menue {
     display: flex;
     align-items: center;
-
-    gap: 1rem;
-
+    gap: 0.5rem;
     list-style: none;
 }
 
-
 .menue a {
     display: block;
-
-    padding: 0.6rem 0.8rem;
-
+    padding: 0.5rem 0.7rem;
     color: var(--schrift);
-
     text-decoration: none;
-
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
-
-    border-radius: 10px;
-
+    border-radius: 9px;
     transition:
         background 0.2s ease,
         color 0.2s ease,
         transform 0.2s ease;
 }
 
-
 .menue a:hover {
     background: rgba(239, 50, 0, 0.15);
-
     color: var(--orange);
-
     transform: translateY(-1px);
 }
-
 
 /* ========================================
    MOBILES MENÜ
@@ -178,205 +165,2101 @@ body {
     display: none;
 }
 
-
 .hamburger {
     display: none;
-
-    width: 45px;
-    height: 45px;
-
+    width: 42px;
+    height: 42px;
     align-items: center;
     justify-content: center;
-
     border: 1px solid var(--rahmen);
-    border-radius: 12px;
-
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.05);
-
     cursor: pointer;
 }
-
 
 .hamburger span,
 .hamburger span::before,
 .hamburger span::after {
     display: block;
-
     width: 18px;
     height: 2px;
-
     background: var(--schrift);
-
     position: relative;
-
     transition:
         transform 0.25s ease,
         top 0.25s ease,
         background 0.25s ease;
-
     content: "";
 }
 
-
 .hamburger span::before {
     position: absolute;
-
     top: -6px;
 }
 
-
 .hamburger span::after {
     position: absolute;
-
     top: 6px;
 }
-
 
 /* ========================================
    HAUPTINHALT
    ======================================== */
 
 .hauptinhalt {
+    position: relative;
     min-height: calc(100vh - 72px);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
-    padding: 2rem;
+    padding: 1.5rem;
 }
-
 
 .hauptinhalt-inhalt {
     width: 100%;
     max-width: 1000px;
-
     text-align: center;
 }
 
-
 .hauptinhalt h1 {
-    margin-bottom: 1rem;
-
+    margin-bottom: 0.75rem;
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.2;
-
     text-shadow:
         0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
-
 .hauptinhalt p {
     color: var(--schrift-gedeckt);
-
     font-size: clamp(0.95rem, 2vw, 1.15rem);
 }
-
 
 /* ========================================
    RESPONSIVES DESIGN
    ======================================== */
 
 @media (max-width: 900px) {
-
     .navigation-inhalt {
-        min-height: 64px;
-
+        min-height: 76px;
         padding: 0 1rem;
     }
 
-
     .logo {
-        width: 42px;
-        height: 42px;
+        width: 70px;
+        height: 70px;
     }
-
 
     .marke {
         font-size: 1.1rem;
     }
 
-
     .menue {
         position: absolute;
-
         top: 100%;
         left: 0;
         right: 0;
-
         flex-direction: column;
         align-items: center;
-
         gap: 0;
-
         background: rgba(23, 23, 23, 0.95);
-
         backdrop-filter: blur(12px);
-
         max-height: 0;
-
         padding: 0;
-
         overflow: hidden;
-
         opacity: 0;
         pointer-events: none;
-
         transition:
             max-height 0.4s ease,
             opacity 0.4s ease,
             padding 0.4s ease;
     }
 
-
     .menue li {
         width: 90%;
-
         border-bottom: 1px solid var(--rahmen);
-
         text-align: center;
     }
 
-
     .menue a {
         width: 100%;
-
-        padding: 1rem 0;
+        padding: 0.8rem 0;
     }
-
 
     .menue-umschalter:checked ~ .menue {
         max-height: 100vh;
-
-        padding: 1rem 0;
-
+        padding: 0.75rem 0;
         opacity: 1;
-
         pointer-events: auto;
     }
-
 
     .hamburger {
         display: flex;
     }
 
-
     .menue-umschalter:checked ~ .hamburger span {
         background: transparent;
     }
 
-
     .menue-umschalter:checked ~ .hamburger span::before {
         top: 0;
-
         transform: rotate(45deg);
     }
 
-
     .menue-umschalter:checked ~ .hamburger span::after {
         top: 0;
-
         transform: rotate(-45deg);
+    }
+
+    /* Hintergrundlogo auf kleinen Bildschirmen */
+
+    body::before {
+        width: 100vw;
+        height: 100vw;
+        opacity: 0.16;
+        filter: blur(10px);
+    }
+}
+
+@media (max-width: 600px) {
+    .navigation-inhalt {
+        min-height: 66px;
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* ========================================
+   RECHNER
+   ======================================== */
+
+.rechner {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1.25rem 1.5rem;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.25rem;
+}
+
+/* ========================================
+   RECHNER-SEITENLEISTE
+   ======================================== */
+
+.rechner-seitenleiste {
+    min-height: 850px;
+    padding: 1.1rem;
+    background: var(--glasflaeche);
+    border: 1px solid var(--rahmen);
+    border-radius: 13px;
+    backdrop-filter: blur(12px);
+}
+
+.rechner-seitenleiste h2 {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+.seitenleisten-bereich {
+    padding-top: 0.9rem;
+    margin-top: 0.9rem;
+    border-top: 1px solid var(--rahmen);
+}
+
+.seitenleisten-bereich h3 {
+    margin-bottom: 0.7rem;
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   RECHNER-HAUPTBEREICH
+   ======================================== */
+
+.rechner-hauptbereich {
+    min-width: 0;
+}
+
+.rechner-kopf {
+    margin-bottom: 1.25rem;
+}
+
+.rechner-kopf h1 {
+    margin-bottom: 0.35rem;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.rechner-kopf p {
+    color: var(--schrift-gedeckt);
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   KONFIGURATOR-AUSWAHL
+   ======================================== */
+
+.rechner-auswahl {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.rechner-auswahl button {
+    width: fit-content;
+    min-width: 190px;
+    min-height: 54px;
+    padding: 0.85rem 1.25rem;
+    color: var(--schrift-gedeckt);
+    background: rgba(20, 20, 20, 0.75);
+    border: 2px solid rgba(255, 191, 0, 0.35);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.rechner-auswahl button:hover {
+    color: var(--schrift);
+    border-color: var(--gelb);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 191, 0, 0.08),
+            rgba(255, 126, 0, 0.10)
+        );
+    box-shadow:
+        0 0 12px rgba(255, 191, 0, 0.10);
+    transform: translateY(-1px);
+}
+
+.rechner-auswahl button.aktiv {
+    color: var(--schrift);
+    border-color: var(--gelb-hell);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 191, 0, 0.18),
+            rgba(255, 126, 0, 0.14)
+        );
+    box-shadow:
+        0 0 0 1px rgba(255, 191, 0, 0.18),
+        0 0 16px rgba(255, 191, 0, 0.16);
+}
+
+/* ========================================
+   KONFIGURATOR-BOXEN
+   ======================================== */
+
+.dino-konfigurator,
+.item-konfigurator {
+    position: relative;
+    padding: 1.1rem;
+    background: var(--glasflaeche);
+    border: 1px solid var(--rahmen);
+    border-radius: 13px;
+    backdrop-filter: blur(12px);
+}
+
+/* Abstand zwischen Tier- und Item-Konfigurator */
+
+.dino-konfigurator {
+    margin-bottom: 1.5rem;
+}
+
+/* ========================================
+   DINO-KONFIGURATOR SCHLIESSEN
+   ======================================== */
+
+.dino-konfigurator-schliessen,
+.item-konfigurator-schliessen {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    color: var(--rot);
+    background: rgba(20, 20, 20, 0.75);
+    border: 1px solid var(--rot);
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.dino-konfigurator-schliessen:hover,
+.item-konfigurator-schliessen:hover {
+    color: var(--rot);
+    background: rgba(178, 0, 0, 0.14);
+    box-shadow:
+        0 0 10px rgba(239, 50, 0, 0.35);
+    transform: scale(1.04);
+}
+
+/* ========================================
+   DINO-SUCHE
+   ======================================== */
+
+.dino-suche {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: min(100%, 360px);
+    margin-bottom: 1rem;
+    padding: 0.65rem;
+    background: rgba(20, 20, 20, 0.45);
+    border: 1px solid var(--rahmen);
+    border-radius: 10px;
+}
+
+/* Eingabefeld und Suchergebnisse */
+
+.dino-suche-eingabebereich {
+    position: relative;
+}
+
+.dino-suche label {
+    color: var(--schrift-gedeckt);
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+#dino-suche-eingabe {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    background: rgba(20, 20, 20, 0.75);
+    color: var(--schrift);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.82rem;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#dino-suche-eingabe:focus {
+    border-color: var(--orange);
+    background: rgba(20, 20, 20, 0.9);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.12);
+}
+
+.dino-suche-ergebnisse {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    right: 0;
+    max-height: 220px;
+    overflow-y: auto;
+    padding: 0.3rem;
+    background: rgba(20, 20, 20, 0.97);
+    border: 1px solid var(--rahmen);
+    border-radius: 9px;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+}
+
+.dino-suche-ergebnis {
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    color: var(--schrift);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.8rem;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.dino-suche-ergebnis:hover {
+    color: var(--schrift);
+    background: rgba(255, 126, 0, 0.12);
+    border-color: rgba(255, 126, 0, 0.45);
+}
+
+/* ========================================
+   ITEM-KONFIGURATOR BEREICHE
+   ======================================== */
+
+/*
+   Die einzelnen Bereiche des Item-Konfigurators
+   besitzen bewusst keine eigenen Boxen.
+   Die gemeinsame Box wird über .item-konfigurator
+   erzeugt.
+*/
+
+.item-kategorieauswahl,
+.item-qualitaet,
+.item-herstellungsart {
+    margin-bottom: 1rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+}
+
+/*
+   Auch die allgemeinen Rechner-Bereiche werden im
+   Item-Konfigurator ohne eigene Box dargestellt.
+*/
+
+.item-konfigurator .rechner-bereich {
+    margin-bottom: 1rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+}
+
+.item-kategorieauswahl h2,
+.item-qualitaet h2,
+.item-herstellungsart h2,
+.item-werte h2,
+.item-menge h2 {
+    margin-bottom: 0.9rem;
+    font-size: 1.05rem;
+}
+
+/* ========================================
+   ITEM-SUCHE
+   ======================================== */
+
+/*
+   Nur das Suchfeld bekommt innerhalb der
+   großen Item-Box eine eigene kleine Box.
+*/
+
+.item-suche {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    background: rgba(20, 20, 20, 0.45);
+    border: 1px solid var(--rahmen);
+    border-radius: 10px;
+}
+
+.item-suche label {
+    color: var(--schrift-gedeckt);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+#item-suche-eingabe {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    background: rgba(20, 20, 20, 0.75);
+    color: var(--schrift);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#item-suche-eingabe:focus {
+    border-color: var(--orange);
+    background: rgba(20, 20, 20, 0.9);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.12);
+}
+
+.item-suche-ergebnisse {
+    position: absolute;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    right: 0;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 0.3rem;
+    background: rgba(20, 20, 20, 0.97);
+    border: 1px solid var(--rahmen);
+    border-radius: 9px;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+}
+
+.item-suche-ergebnis {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    color: var(--schrift);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 7px;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 0.82rem;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+}
+
+.item-suche-ergebnis:hover {
+    color: var(--schrift);
+    background: rgba(255, 126, 0, 0.12);
+    border-color: rgba(255, 126, 0, 0.45);
+}
+
+/* ========================================
+   ITEM-KATEGORIE-BUTTONS
+   ======================================== */
+
+.item-kategorie-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.item-kategorie-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 145px;
+    min-height: 68px;
+    padding: 0.7rem 0.85rem;
+    color: var(--schrift);
+    background: #242323;
+    border: 2px solid rgba(180, 180, 180, 0.45);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.item-kategorie-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 126, 0, 0.75);
+    background: #2c2a29;
+    box-shadow:
+        0 0 12px rgba(255, 126, 0, 0.08);
+}
+
+.item-kategorie-button.aktiv {
+    border: 3px solid var(--orange);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(178, 0, 0, 0.30),
+            rgba(255, 126, 0, 0.20)
+        );
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.20),
+        0 0 16px rgba(255, 126, 0, 0.16);
+}
+
+.item-kategorie-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(255, 126, 0, 0.03) 56%,
+            rgba(255, 126, 0, 0.20) 65%,
+            rgba(255, 191, 0, 0.10) 68%,
+            transparent 70%
+        );
+    background-size: 200% 100%;
+    background-position: 165% 0;
+    pointer-events: none;
+}
+
+.item-kategorie-button.aktiv::after {
+    animation:
+        kategorie-glanz 1s ease forwards;
+}
+
+/* ========================================
+   ITEM-KATEGORIE-HINWEIS
+   ======================================== */
+
+.item-kategorie-hinweis {
+    margin-top: 0.7rem;
+    padding: 0.65rem 0.8rem;
+    color: var(--gelb-hell);
+    background: rgba(255, 191, 0, 0.10);
+    border: 1px solid var(--gelb);
+    border-radius: 7px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    box-shadow:
+        0 0 10px rgba(255, 191, 0, 0.08);
+}
+
+/* ========================================
+   ITEM-QUALITÄT
+   ======================================== */
+
+.item-qualitaet-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.item-qualitaet-button {
+    min-width: 105px;
+    min-height: 40px;
+    padding: 0.5rem 0.7rem;
+    color: var(--schrift-gedeckt);
+    background: rgba(20, 20, 20, 0.75);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.item-qualitaet-button:hover {
+    color: var(--schrift);
+    border-color: rgba(255, 126, 0, 0.65);
+    background: rgba(44, 42, 41, 0.9);
+    transform: translateY(-1px);
+}
+
+/* Primitiv */
+
+.item-qualitaet-button[data-qualitaet="primitiv"].aktiv {
+    color: #C8CACA;
+    border-color: #C8CACA;
+    background: rgba(200, 202, 202, 0.08);
+    box-shadow:
+        0 0 0 1px rgba(200, 202, 202, 0.12),
+        0 0 10px rgba(200, 202, 202, 0.12);
+}
+
+/* Roh */
+
+.item-qualitaet-button[data-qualitaet="roh"].aktiv {
+    color: #1EFF00;
+    border-color: #1EFF00;
+    background: rgba(30, 255, 0, 0.07);
+    box-shadow:
+        0 0 0 1px rgba(30, 255, 0, 0.12),
+        0 0 10px rgba(30, 255, 0, 0.12);
+}
+
+/* Fortgeschritten */
+
+.item-qualitaet-button[data-qualitaet="fortgeschritten"].aktiv {
+    color: #0070DD;
+    border-color: #0070DD;
+    background: rgba(0, 112, 221, 0.08);
+    box-shadow:
+        0 0 0 1px rgba(0, 112, 221, 0.12),
+        0 0 10px rgba(0, 112, 221, 0.12);
+}
+
+/* Überragend */
+
+.item-qualitaet-button[data-qualitaet="ueberragend"].aktiv {
+    color: #A335EE;
+    border-color: #A335EE;
+    background: rgba(163, 53, 238, 0.08);
+    box-shadow:
+        0 0 0 1px rgba(163, 53, 238, 0.12),
+        0 0 10px rgba(163, 53, 238, 0.12);
+}
+
+/* Meisterhaft */
+
+.item-qualitaet-button[data-qualitaet="meisterhaft"].aktiv {
+    color: #B6AC4C;
+    border-color: #B6AC4C;
+    background: rgba(182, 172, 76, 0.08);
+    box-shadow:
+        0 0 0 1px rgba(182, 172, 76, 0.12),
+        0 0 10px rgba(182, 172, 76, 0.12);
+}
+
+/* Legendär */
+
+.item-qualitaet-button[data-qualitaet="legendaer"].aktiv {
+    color: #00FFFF;
+    border-color: #00FFFF;
+    background: rgba(0, 255, 255, 0.07);
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 255, 0.12),
+        0 0 10px rgba(0, 255, 255, 0.12);
+}
+
+/* ========================================
+   ITEM-HERSTELLUNGSART
+   ======================================== */
+
+.item-herstellungsart-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.item-herstellungsart-button {
+    min-width: 125px;
+    min-height: 40px;
+    padding: 0.5rem 0.7rem;
+    color: var(--schrift-gedeckt);
+    background: rgba(20, 20, 20, 0.75);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.item-herstellungsart-button:hover {
+    color: var(--schrift);
+    border-color: rgba(255, 126, 0, 0.65);
+    background: rgba(44, 42, 41, 0.9);
+    transform: translateY(-1px);
+}
+
+.item-herstellungsart-button.aktiv {
+    color: var(--schrift);
+    border-color: var(--orange);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(178, 0, 0, 0.25),
+            rgba(255, 126, 0, 0.16)
+        );
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.12),
+        0 0 10px rgba(255, 126, 0, 0.10);
+}
+
+/* ========================================
+   ITEMWERTE
+   ======================================== */
+
+.item-werte {
+    margin-bottom: 1rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+}
+
+.item-werte-formular {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+/* ========================================
+   MENGE
+   ======================================== */
+
+.item-menge {
+    margin-bottom: 1rem;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: none;
+}
+
+.item-menge .angabe-eingabe {
+    max-width: 220px;
+}
+
+/* ========================================
+   ITEM-KONFIGURATOR AKTION
+   ======================================== */
+
+.item-konfigurator-aktion {
+    display: flex;
+    align-items: center;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+}
+
+#item-in-warenkorb {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 42px;
+    padding: 0.6rem 0.9rem;
+    color: var(--gelb);
+    background: rgba(20, 20, 20, 0.75);
+    border: 1px solid var(--gelb);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    box-shadow:
+        0 0 0 1px rgba(255, 191, 0, 0.05);
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+#item-in-warenkorb::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(255, 191, 0, 0.04) 56%,
+            rgba(255, 191, 0, 0.20) 65%,
+            rgba(255, 255, 0, 0.10) 68%,
+            transparent 70%
+        );
+    background-size: 200% 100%;
+    background-position: 165% 0;
+    pointer-events: none;
+}
+
+#item-in-warenkorb:hover {
+    color: var(--schrift);
+    border-color: var(--gelb-hell);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 191, 0, 0.10),
+            rgba(255, 126, 0, 0.08)
+        );
+    box-shadow:
+        0 0 12px rgba(255, 191, 0, 0.14);
+    transform: translateY(-1px);
+}
+
+#item-in-warenkorb:active {
+    color: var(--schrift);
+    border-color: var(--gelb-hell);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 191, 0, 0.18),
+            rgba(255, 126, 0, 0.14)
+        );
+    box-shadow:
+        0 0 0 1px rgba(255, 191, 0, 0.18),
+        0 0 16px rgba(255, 191, 0, 0.16);
+    transform: translateY(0);
+}
+
+#item-in-warenkorb:active::after {
+    animation:
+        kategorie-glanz 0.8s ease forwards;
+}
+
+/* ========================================
+   KATEGORIE-HINWEIS
+   ======================================== */
+
+.kategorie-hinweis {
+    margin-top: 0.7rem;
+    padding: 0.65rem 0.8rem;
+    color: var(--gelb-hell);
+    background: rgba(255, 191, 0, 0.10);
+    border: 1px solid var(--gelb);
+    border-radius: 7px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: pre-line;
+    box-shadow:
+        0 0 10px rgba(255, 191, 0, 0.08);
+}
+
+/* ========================================
+   WARENKORB-AKTION
+   ======================================== */
+
+.dino-konfigurator-aktion {
+    display: flex;
+    align-items: center;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+#tier-in-warenkorb {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 42px;
+    padding: 0.6rem 0.9rem;
+    color: var(--gelb);
+    background: rgba(20, 20, 20, 0.75);
+    border: 1px solid var(--gelb);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 700;
+    box-shadow:
+        0 0 0 1px rgba(255, 191, 0, 0.05);
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+#tier-in-warenkorb::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(255, 191, 0, 0.04) 56%,
+            rgba(255, 191, 0, 0.20) 65%,
+            rgba(255, 255, 0, 0.10) 68%,
+            transparent 70%
+        );
+    background-size: 200% 100%;
+    background-position: 165% 0;
+    pointer-events: none;
+}
+
+#tier-in-warenkorb:hover {
+    color: var(--schrift);
+    border-color: var(--gelb-hell);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 191, 0, 0.10),
+            rgba(255, 126, 0, 0.08)
+        );
+    box-shadow:
+        0 0 12px rgba(255, 191, 0, 0.14);
+    transform: translateY(-1px);
+}
+
+#tier-in-warenkorb:active {
+    color: var(--schrift);
+    border-color: var(--gelb-hell);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 191, 0, 0.18),
+            rgba(255, 126, 0, 0.14)
+        );
+    box-shadow:
+        0 0 0 1px rgba(255, 191, 0, 0.18),
+        0 0 16px rgba(255, 191, 0, 0.16);
+    transform: translateY(0);
+}
+
+#tier-in-warenkorb:active::after {
+    animation:
+        kategorie-glanz 0.8s ease forwards;
+}
+
+/* ========================================
+   RESPONSIVES RECHNER-LAYOUT
+   ======================================== */
+
+@media (max-width: 900px) {
+    .rechner {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .rechner-seitenleiste {
+        width: 100%;
+    }
+
+    .rechner-auswahl {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .rechner {
+        padding: 0.75rem;
+    }
+
+    .rechner-seitenleiste,
+    .kategorieauswahl,
+    .rechner-eingaben,
+    .rechner-bereich,
+    .rechner-mutationen,
+    .rechner-aktionen,
+    .rechner-ergebnis {
+        padding: 0.9rem;
+        border-radius: 11px;
+    }
+
+    .rechner-auswahl {
+        gap: 0.5rem;
+    }
+
+    .rechner-auswahl button {
+        min-width: 0;
+        flex: 1 1 140px;
+        padding: 0.75rem 0.8rem;
+        font-size: 0.85rem;
+    }
+
+    .dino-konfigurator,
+    .item-konfigurator {
+        padding: 0.9rem;
+        border-radius: 11px;
+    }
+
+    .dino-konfigurator-schliessen,
+    .item-konfigurator-schliessen {
+        top: 0.45rem;
+        right: 0.45rem;
+    }
+
+    .dino-suche {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    #tier-in-warenkorb,
+    #item-in-warenkorb {
+        width: 100%;
+    }
+
+    .item-werte-formular {
+        grid-template-columns: 1fr;
+    }
+
+    .item-menge .angabe-eingabe {
+        max-width: none;
+    }
+
+    .item-kategorie-buttons,
+    .item-qualitaet-buttons,
+    .item-herstellungsart-buttons {
+        width: 100%;
+    }
+
+    .item-kategorie-button,
+    .item-qualitaet-button,
+    .item-herstellungsart-button {
+        flex: 1 1 auto;
+    }
+}
+
+/* ========================================
+   ITEMPREISE
+   ======================================== */
+
+.itempreise {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ========================================
+   ITEMSTUFE
+   ======================================== */
+
+.itempreis-stufe {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.itempreis-stufe label {
+    font-size: 0.75rem;
+    color: var(--schrift-gedeckt);
+}
+
+.itempreis-stufe select {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    background: rgba(20, 20, 20, 0.75);
+    color: var(--schrift);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.itempreis-stufe select:focus {
+    border-color: var(--orange);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.12);
+}
+
+/* ========================================
+   ITEMGRUPPEN
+   ======================================== */
+
+.itempreis-gruppe {
+    padding: 0.7rem;
+    background: rgba(20, 20, 20, 0.45);
+    border: 1px solid var(--rahmen);
+    border-radius: 10px;
+}
+
+.itempreis-gruppe h4 {
+    margin-bottom: 0.55rem;
+    font-size: 0.85rem;
+    color: var(--schrift);
+}
+
+/* ========================================
+   PREISFELDER
+   ======================================== */
+
+.preisfeld {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.preisfeld:focus-within {
+    border-color: var(--orange);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.15),
+        0 0 10px rgba(255, 126, 0, 0.08);
+}
+
+.preisfeld input {
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    color: var(--orange);
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.preisfeld input::-webkit-inner-spin-button,
+.preisfeld input::-webkit-outer-spin-button {
+    margin: 0;
+    opacity: 0;
+}
+
+.preisfeld input[type="number"] {
+    appearance: textfield;
+}
+
+.preisfeld span {
+    margin-left: 0.3rem;
+    color: var(--orange);
+    font-size: 0.75rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+/* ========================================
+   MUTATIONSAUSWAHL
+   ======================================== */
+
+.mutationsauswahl {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ========================================
+   MUTATIONSDROPDOWN
+   ======================================== */
+
+.mutationsauswahl select {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    background: rgba(20, 20, 20, 0.75);
+    color: var(--schrift);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.mutationsauswahl select:focus {
+    border-color: var(--orange);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.12);
+}
+
+/* ========================================
+   GENE-DROPDOWN
+   ======================================== */
+
+#gen-auswahl {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    background: rgba(20, 20, 20, 0.75);
+    color: var(--schrift);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#gen-auswahl:hover {
+    border-color: rgba(255, 126, 0, 0.55);
+}
+
+#gen-auswahl:focus {
+    border-color: var(--orange);
+    background: rgba(20, 20, 20, 0.9);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.12);
+}
+
+/* ========================================
+   AKTIVE MUTATIONEN
+   ======================================== */
+
+.aktive-mutationen {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* ========================================
+   MUTATIONSPREIS
+   ======================================== */
+
+.mutationspreis {
+    padding: 0.7rem;
+    background: rgba(20, 20, 20, 0.45);
+    border: 1px solid var(--rahmen);
+    border-radius: 10px;
+}
+
+/* ========================================
+   MUTATIONSPREIS KOPF
+   ======================================== */
+
+.mutationspreis-kopf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.55rem;
+}
+
+.mutationspreis-kopf h4 {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--schrift);
+}
+
+/* ========================================
+   MUTATIONSPREIS EINGABE
+   ======================================== */
+
+.mutationspreis-eingabe {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0.6rem;
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.mutationspreis-eingabe:focus-within {
+    border-color: var(--orange);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.15),
+        0 0 10px rgba(255, 126, 0, 0.08);
+}
+
+.mutationspreis-eingabe input {
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    color: var(--orange);
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.mutationspreis-eingabe input::-webkit-inner-spin-button,
+.mutationspreis-eingabe input::-webkit-outer-spin-button {
+    margin: 0;
+    opacity: 0;
+}
+
+.mutationspreis-eingabe input[type="number"] {
+    appearance: textfield;
+}
+
+.mutationspreis-eingabe span {
+    margin-left: 0.3rem;
+    color: var(--orange);
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* ========================================
+   MUTATIONSSLIDER
+   ======================================== */
+
+.mutations-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+/* ========================================
+   EINZELNER MUTATIONSSLIDER
+   ======================================== */
+
+.mutation-slider {
+    padding: 0.8rem;
+    background: rgba(20, 20, 20, 0.45);
+    border: 1px solid var(--rahmen);
+    border-radius: 10px;
+}
+
+/* ========================================
+   SLIDER-KOPF
+   ======================================== */
+
+.mutation-slider-kopf {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.mutation-slider-kopf h4 {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--schrift);
+}
+
+/* ========================================
+   MUTATION ENTFERNEN
+   ======================================== */
+
+.mutation-slider-entfernen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: rgba(10, 10, 10, 0.7);
+    color: var(--schrift-gedeckt);
+    border: 1px solid var(--rahmen);
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.1rem;
+    line-height: 1;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.mutation-slider-entfernen:hover {
+    color: var(--schrift);
+    border-color: var(--rot);
+    background: rgba(178, 0, 0, 0.2);
+}
+
+/* ========================================
+   SLIDER-BEREICH
+   ======================================== */
+
+.mutation-slider-bereich {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* ========================================
+   SLIDER-WERTE
+   ======================================== */
+
+.mutation-slider-werte {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--schrift-gedeckt);
+    font-size: 0.75rem;
+}
+
+.mutation-slider-wert {
+    color: var(--schrift);
+    font-weight: 700;
+}
+
+/* ========================================
+   SLIDER
+   ======================================== */
+
+.mutation-slider input[type="range"] {
+    --slider-fortschritt: 0%;
+    width: 100%;
+    height: 8px;
+    margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* ========================================
+   SLIDER TRACK – CHROME / EDGE
+   ======================================== */
+
+.mutation-slider input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            to right,
+            var(--rot) 0%,
+            var(--orange) 50%,
+            var(--gelb) 100%
+        ) no-repeat,
+        rgba(10, 10, 10, 0.85);
+    background-size:
+        var(--slider-fortschritt) 100%,
+        100% 100%;
+}
+
+/* ========================================
+   SLIDER THUMB – CHROME / EDGE
+   ======================================== */
+
+.mutation-slider input[type="range"]::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    margin-top: -5px;
+    appearance: none;
+    -webkit-appearance: none;
+    background: #0a0a0a;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    box-shadow:
+        0 0 6px rgba(0, 0, 0, 0.6);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.mutation-slider input[type="range"]:hover::-webkit-slider-thumb {
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.mutation-slider input[type="range"]:focus::-webkit-slider-thumb {
+    border-color: var(--orange);
+    box-shadow:
+        0 0 0 2px rgba(255, 126, 0, 0.15);
+}
+
+/* ========================================
+   SLIDER TRACK – FIREFOX
+   ======================================== */
+
+.mutation-slider input[type="range"]::-moz-range-track {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(10, 10, 10, 0.85);
+}
+
+/* ========================================
+   SLIDER FÜLLUNG – FIREFOX
+   ======================================== */
+
+.mutation-slider input[type="range"]::-moz-range-progress {
+    height: 8px;
+    border-radius: 999px;
+    background:
+        linear-gradient(
+            to right,
+            var(--rot) 0%,
+            var(--orange) 50%,
+            var(--gelb) 100%
+        );
+}
+
+/* ========================================
+   SLIDER THUMB – FIREFOX
+   ======================================== */
+
+.mutation-slider input[type="range"]::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #0a0a0a;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    box-shadow:
+        0 0 6px rgba(0, 0, 0, 0.6);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.mutation-slider input[type="range"]:hover::-moz-range-thumb {
+    border-color: rgba(255, 255, 255, 0.8);
+}
+
+.mutation-slider input[type="range"]:focus::-moz-range-thumb {
+    border-color: var(--orange);
+    box-shadow:
+        0 0 0 2px rgba(255, 126, 0, 0.15);
+}
+
+/* ========================================
+   ORIENTIERUNGSMARKEN
+   ======================================== */
+
+.mutation-slider-marken {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 0.1rem;
+}
+
+/* ========================================
+   EINZELNE MARKE
+   ======================================== */
+
+.mutation-slider-marke {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    color: var(--schrift-gedeckt);
+    font-size: 0.7rem;
+}
+
+/* ========================================
+   MARKENSTRICH
+   ======================================== */
+
+.mutation-slider-marke-strich {
+    width: 1px;
+    height: 5px;
+    margin-bottom: 0.2rem;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ========================================
+   MARKENBESCHRIFTUNG
+   ======================================== */
+
+.mutation-slider-marke-text {
+    white-space: nowrap;
+}
+
+/* ========================================
+   KATEGORIE-BUTTONS
+   ======================================== */
+
+.kategorie-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+}
+
+.kategorie-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 145px;
+    min-height: 68px;
+    padding: 0.7rem 0.85rem;
+    color: var(--schrift);
+    background: #242323;
+    border: 2px solid rgba(180, 180, 180, 0.45);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* ========================================
+   HOVER
+   ======================================== */
+
+.kategorie-button:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 126, 0, 0.75);
+    background: #2c2a29;
+    box-shadow:
+        0 0 12px rgba(255, 126, 0, 0.08);
+}
+
+/* ========================================
+   AKTIVE KATEGORIE
+   ======================================== */
+
+.kategorie-button.aktiv {
+    border: 3px solid var(--orange);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(178, 0, 0, 0.30),
+            rgba(255, 126, 0, 0.20)
+        );
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.20),
+        0 0 16px rgba(255, 126, 0, 0.16);
+}
+
+/* ========================================
+   GLAS-GLANZFLÄCHE
+   ======================================== */
+
+.kategorie-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(
+            45deg,
+            transparent 48%,
+            rgba(255, 126, 0, 0.03) 56%,
+            rgba(255, 126, 0, 0.20) 65%,
+            rgba(255, 191, 0, 0.10) 68%,
+            transparent 70%
+        );
+    background-size: 200% 100%;
+    background-position: 165% 0;
+    pointer-events: none;
+}
+
+/* ========================================
+   GLANZEFFEKT BEIM ANKLICKEN
+   ======================================== */
+
+.kategorie-button.aktiv::after {
+    animation:
+        kategorie-glanz 1s ease forwards;
+}
+
+.item-kategorie-button.aktiv::after {
+    animation:
+        kategorie-glanz 1s ease forwards;
+}
+
+@keyframes kategorie-glanz {
+    from {
+        background-position: 165% 0;
+    }
+
+    to {
+        background-position: -20% 0;
+    }
+}
+
+/* ========================================
+   INHALT DES BUTTONS
+   ======================================== */
+
+.kategorie-button-inhalt {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* ========================================
+   KATEGORIE-ICON
+   ======================================== */
+
+.kategorie-button-icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+/* ========================================
+   KATEGORIE-BEZEICHNUNG
+   ======================================== */
+
+.kategorie-button-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ========================================
+   GENE
+   ======================================== */
+
+.gene-slots {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.gene-slot {
+    position: relative;
+    width: fit-content;
+    min-width: 180px;
+    max-width: 220px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.45rem 0.6rem;
+    background: rgba(20, 20, 20, 0.65);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    cursor: default;
+}
+
+.gene-slot-name {
+    overflow: hidden;
+    color: var(--schrift);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gene-slot-entfernen {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-left: 0.45rem;
+    padding: 0;
+    background: rgba(10, 10, 10, 0.7);
+    color: var(--schrift-gedeckt);
+    border: 1px solid var(--rahmen);
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1;
+}
+
+.gene-slot-entfernen:hover {
+    color: var(--schrift);
+    border-color: var(--rot);
+    background: rgba(178, 0, 0, 0.2);
+}
+
+.gene-slot-beschreibung {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 0.7rem);
+    width: 280px;
+    padding: 0.65rem 0.75rem;
+    transform: translateY(-50%);
+    background: rgba(20, 20, 20, 0.96);
+    color: var(--schrift-gedeckt);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 20;
+    transition:
+        opacity 0.15s ease,
+        visibility 0.15s ease;
+}
+
+.gene-slot:hover .gene-slot-beschreibung {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ========================================
+   ANGABEN
+   ======================================== */
+
+.angaben-formular {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+/* ========================================
+   TEXT- UND ZAHLENEINGABEN
+   ======================================== */
+
+.angabe-eingabe {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.angabe-eingabe label,
+.angabe-label {
+    color: var(--schrift-gedeckt);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.angabe-eingabe input[type="text"],
+.angabe-eingabe input[type="number"] {
+    width: 100%;
+    padding: 0.55rem 0.65rem;
+    background: rgba(20, 20, 20, 0.75);
+    color: var(--schrift);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.angabe-eingabe input[type="text"]:focus,
+.angabe-eingabe input[type="number"]:focus {
+    border-color: var(--orange);
+    background: rgba(20, 20, 20, 0.9);
+    box-shadow:
+        0 0 0 1px rgba(255, 126, 0, 0.12);
+}
+
+/* Name etwas breiter, Level bewusst kompakter */
+
+#dino-name {
+    width: min(100%, 220px);
+}
+
+#dino-level {
+    width: 110px;
+}
+
+/* ========================================
+   ZAHLENFELD
+   ======================================== */
+
+.angabe-eingabe input[type="number"] {
+    text-align: left;
+    appearance: textfield;
+}
+
+.angabe-eingabe input[type="number"]::-webkit-inner-spin-button,
+.angabe-eingabe input[type="number"]::-webkit-outer-spin-button {
+    margin: 0;
+    opacity: 0;
+}
+
+/* ========================================
+   AUSWAHLGRUPPEN
+   ======================================== */
+
+.angabe-gruppe {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.angabe-optionen {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    width: fit-content;
+}
+
+.angabe-option {
+    min-width: 72px;
+    min-height: 38px;
+    padding: 0.5rem 0.65rem;
+    background: rgba(20, 20, 20, 0.75);
+    color: var(--schrift-gedeckt);
+    border: 1px solid var(--rahmen);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.angabe-option:hover {
+    color: var(--schrift);
+    border-color: rgba(255, 126, 0, 0.65);
+    background: rgba(44, 42, 41, 0.9);
+}
+
+.angabe-option.aktiv {
+    color: var(--schrift);
+    border-color: var(--orange);
+    background:
+        linear-gradient(
+            135deg,
+            rgba(178, 0, 0, 0.25),
+            rgba(255, 126, 0, 0.16)
+        );
+    box-shadow:
+        0 0 8px rgba(255, 126, 0, 0.08);
+}
+
+/* ========================================
+   MOBILE – ANGABEN
+   ======================================== */
+
+@media (max-width: 600px) {
+    .angaben-formular {
+        grid-template-columns: 1fr;
+    }
+
+    #dino-name {
+        width: 100%;
+        max-width: 220px;
+    }
+
+    .angabe-optionen {
+        width: 100%;
+    }
+
+    .angabe-option {
+        flex: 1 1 auto;
+    }
+
+    .item-konfigurator {
+        padding: 0.9rem;
+        border-radius: 11px;
     }
 }

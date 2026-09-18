@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rechner – Ruhrpott Survivors</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ========================================
+         NAVIGATION
+         ======================================== -->
+
+    <nav class="navigation">
+        <div class="navigation-inhalt">
+
+            <!-- Logo und Name -->
+
+            <a href="index.html" class="marke">
+                <img
+                    src="Logo_RS.png"
+                    alt="Ruhrpott Survivors"
+                    class="logo"
+                >
+                <span>Ruhrpott Survivors</span>
+            </a>
+
+            <!-- Umschalter für das mobile Menü -->
+
+            <input
+                type="checkbox"
+                id="menue-umschalter"
+                class="menue-umschalter"
+            >
+
+            <!-- Menüpunkte -->
+
+            <ul class="menue">
+                <li>
+                    <a href="rechner.html">
+                        Rechner
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        Handelsregeln
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Mobiles Menü -->
+
+            <label
+                for="menue-umschalter"
+                class="hamburger"
+                aria-label="Menü öffnen"
+            >
+                <span></span>
+            </label>
+
+        </div>
+    </nav>
+
+    <!-- ========================================
+         RECHNER
+         ======================================== -->
+
+    <main class="rechner">
+
+        <!-- ========================================
+             SEITENLEISTE
+             ======================================== -->
+
+        <aside class="rechner-seitenleiste">
+
+            <h2>⚙ Rechner-Einstellungen</h2>
+
+            <!-- ========================================
+                 ITEMS
+                 ======================================== -->
+
+            <section class="seitenleisten-bereich itempreise">
+                <h3>📦 Items</h3>
+
+                <div class="seitenleisten-unterbereich">
+                    <h4>Itempreise</h4>
+
+                    <!-- Itemstufe -->
+
+                    <div class="itempreis-stufe">
+                        <label for="itempreis-stufe">
+                            Itemstufe
+                        </label>
+                        <select id="itempreis-stufe">
+                            <option value="blaupausen">
+                                Blaupausen
+                            </option>
+                            <option value="konvertierbar">
+                                Konvertierbar
+                            </option>
+                            <option value="hergestellt">
+                                Hergestellt
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Endgame-Sättel -->
+
+                    <div class="itempreis-gruppe">
+                        <h4>🐎 Endgame-Sättel</h4>
+                        <div class="preisfeld">
+                            <input
+                                type="number"
+                                id="preis-sattel"
+                                value="5000"
+                                min="5000"
+                                max="20000"
+                                step="100"
+                            >
+                            <span>SP</span>
+                        </div>
+                    </div>
+
+                    <!-- Tek-Ausrüstung -->
+
+                    <div class="itempreis-gruppe">
+                        <h4>🔩 Tek-Ausrüstung</h4>
+                        <div class="preisfeld">
+                            <input
+                                type="number"
+                                id="preis-tek"
+                                value="8000"
+                                min="8000"
+                                max="20000"
+                                step="100"
+                            >
+                            <span>SP</span>
+                        </div>
+                    </div>
+
+                    <!-- Sonstige BP -->
+
+                    <div class="itempreis-gruppe">
+                        <h4>📜 Sonstige BP</h4>
+                        <div class="preisfeld">
+                            <input
+                                type="number"
+                                id="preis-sonstige"
+                                value="1000"
+                                min="1000"
+                                max="20000"
+                                step="100"
+                            >
+                            <span>SP</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 TIERE
+                 ======================================== -->
+
+            <section class="seitenleisten-bereich tiere">
+                <h3>🧬 Tiere</h3>
+
+                <!-- ========================================
+                     MUTATIONSAUSWAHL
+                     ======================================== -->
+
+                <div class="seitenleisten-unterbereich">
+                    <h4>Mutationen</h4>
+
+                    <div class="mutationsauswahl">
+
+                        <!-- Mutation hinzufügen -->
+
+                        <select id="mutation-auswahl">
+                            <option
+                                value=""
+                                selected
+                                disabled
+                            >
+                                Mutation hinzufügen
+                            </option>
+                            <option value="leben">
+                                Leben
+                            </option>
+                            <option value="ausdauer">
+                                Ausdauer
+                            </option>
+                            <option value="gewicht">
+                                Gewicht
+                            </option>
+                            <option value="sauerstoff">
+                                Sauerstoff
+                            </option>
+                            <option value="nahrung">
+                                Nahrung
+                            </option>
+                            <option value="schaden">
+                                Schaden
+                            </option>
+                            <option value="handwerk">
+                                Handwerk
+                            </option>
+                        </select>
+
+                        <!-- Aktive Mutationen -->
+
+                        <div
+                            id="aktive-mutationen"
+                            class="aktive-mutationen"
+                        >
+                            <!-- Aktive Mutationen werden hier eingefügt -->
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ========================================
+                     GENEAUSWAHL
+                     ======================================== -->
+
+                <div class="seitenleisten-unterbereich">
+                    <h4>Gene</h4>
+
+                    <div class="genauswahl">
+                        <select id="gen-auswahl">
+                            <option
+                                value=""
+                                selected
+                                disabled
+                            >
+                                Gen hinzufügen
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+            </section>
+
+        </aside>
+
+        <!-- ========================================
+             HAUPTBEREICH
+             ======================================== -->
+
+        <section class="rechner-hauptbereich">
+
+            <!-- ========================================
+                 RECHNER-KOPF
+                 ======================================== -->
+
+            <div class="rechner-kopf">
+                <h1>Rechner</h1>
+                <p>
+                    Tiere und Items für den Handel konfigurieren.
+                </p>
+            </div>
+
+            <!-- ========================================
+                 RECHNER-AUSWAHL
+                 ======================================== -->
+
+            <section class="rechner-auswahl">
+
+                <!-- Dino konfigurieren -->
+
+                <button
+                    type="button"
+                    class="rechner-auswahl-button"
+                    id="dino-konfigurieren"
+                >
+                    🦖 Dino konfigurieren
+                </button>
+
+                <!-- Item konfigurieren -->
+
+                <button
+                    type="button"
+                    class="rechner-auswahl-button"
+                    id="item-konfigurieren"
+                >
+                    📦 Item konfigurieren
+                </button>
+
+            </section>
+
+            <!-- ========================================
+                 DINO-KONFIGURATOR
+                 ======================================== -->
+
+            <section
+                id="dino-konfigurator"
+                class="dino-konfigurator"
+                hidden
+            >
+
+                <button
+                    type="button"
+                    class="dino-konfigurator-schliessen"
+                    id="dino-konfigurator-schliessen"
+                    aria-label="Dino-Konfigurator schließen"
+                    title="Konfigurator schließen"
+                >
+                    ×
+                </button>
+
+                <!-- ========================================
+                     DINO-KONFIGURATOR BOX
+                     ======================================== -->
+
+                <div class="konfigurator-box">
+
+                    <!-- ========================================
+                         1. KATEGORIE
+                         ======================================== -->
+
+                    <section class="kategorieauswahl">
+                        <h2>Kategorie</h2>
+
+                        <div class="kategorie-buttons">
+                            <!-- Kategorie-Buttons werden per JavaScript eingefügt -->
+                        </div>
+
+                        <!-- Kategorie-Hinweis -->
+
+                        <div
+                            class="kategorie-hinweis"
+                            hidden
+                        >
+                            Lorem Ipsum
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         2. ANGABEN
+                         ======================================== -->
+
+                    <section class="rechner-bereich">
+                        <h2>Angaben</h2>
+
+                        <div class="angaben-formular">
+
+                            <!-- Tier-Suche -->
+
+                            <div class="tier-suche">
+                                <label for="dino-suche-eingabe">
+                                    Tier suchen
+                                </label>
+
+                                <div class="dino-suche-eingabebereich">
+                                    <input
+                                        type="text"
+                                        id="dino-suche-eingabe"
+                                        placeholder="Name des Tieres eingeben"
+                                        autocomplete="off"
+                                    >
+
+                                    <!-- Suchergebnisse -->
+
+                                    <div
+                                        id="dino-suche-ergebnisse"
+                                        class="dino-suche-ergebnisse"
+                                        hidden
+                                    >
+                                        <!-- Treffer werden per JavaScript eingefügt -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Level -->
+
+                            <div class="angabe-eingabe">
+                                <label for="dino-level">
+                                    Level
+                                </label>
+                                <input
+                                    type="number"
+                                    id="dino-level"
+                                    min="1"
+                                    placeholder="Level"
+                                >
+                            </div>
+
+                            <!-- Abgabeart -->
+
+                            <div class="angabe-gruppe">
+                                <span class="angabe-label">
+                                    Abgabeart
+                                </span>
+
+                                <div class="angabe-optionen">
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="abgabeart"
+                                        data-wert="baby"
+                                    >
+                                        Baby
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="abgabeart"
+                                        data-wert="ausgewachsen"
+                                    >
+                                        Ausgewachsen
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Geschlecht -->
+
+                            <div class="angabe-gruppe">
+                                <span class="angabe-label">
+                                    Geschlecht
+                                </span>
+
+                                <div class="angabe-optionen">
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="geschlecht"
+                                        data-wert="weibchen"
+                                    >
+                                        Weibchen
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="geschlecht"
+                                        data-wert="maennchen"
+                                    >
+                                        Männchen
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="geschlecht"
+                                        data-wert="neutral"
+                                    >
+                                        Neutral
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Kastration -->
+
+                            <div class="angabe-gruppe">
+                                <span class="angabe-label">
+                                    Kastration
+                                </span>
+
+                                <div class="angabe-optionen">
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="kastration"
+                                        data-wert="ja"
+                                    >
+                                        Ja
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="kastration"
+                                        data-wert="nein"
+                                    >
+                                        Nein
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Shiny -->
+
+                            <div class="angabe-gruppe">
+                                <span class="angabe-label">
+                                    Shiny
+                                </span>
+
+                                <div class="angabe-optionen">
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="shiny"
+                                        data-wert="nein"
+                                    >
+                                        Nein
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="shiny"
+                                        data-wert="ja"
+                                    >
+                                        Ja
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="shiny"
+                                        data-wert="essenz"
+                                    >
+                                        Essenz
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Rassenzusatz -->
+
+                            <div class="angabe-gruppe">
+                                <span class="angabe-label">
+                                    Rassenzusatz
+                                </span>
+
+                                <div class="angabe-optionen">
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="rassenzusatz"
+                                        data-wert="aberant"
+                                    >
+                                        Aberrant
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="rassenzusatz"
+                                        data-wert="x"
+                                    >
+                                        X
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="rassenzusatz"
+                                        data-wert="y"
+                                    >
+                                        Y
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="angabe-option"
+                                        data-gruppe="rassenzusatz"
+                                        data-wert="s"
+                                    >
+                                        S
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         3. MUTATIONEN
+                         ======================================== -->
+
+                    <section
+                        class="rechner-mutationen"
+                        id="dino-mutationen"
+                        hidden
+                    >
+                        <h2>Mutationen</h2>
+
+                        <div
+                            id="mutations-slider"
+                            class="mutations-slider"
+                        >
+                            <!-- Aktivierte Mutations-Slider werden hier eingefügt -->
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         4. GENE
+                         ======================================== -->
+
+                    <section
+                        class="rechner-gene"
+                        id="dino-gene"
+                        hidden
+                    >
+                        <h2>Gene</h2>
+
+                        <div
+                            id="gene-slots"
+                            class="gene-slots"
+                        >
+                            <!-- Ausgewählte Gene werden hier eingefügt -->
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         AKTION
+                         ======================================== -->
+
+                    <div class="dino-konfigurator-aktion">
+                        <button
+                            type="button"
+                            id="tier-in-warenkorb"
+                        >
+                            🛒 Tier in den Warenkorb
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- ========================================
+                 ITEM-KONFIGURATOR
+                 ======================================== -->
+
+            <section
+                id="item-konfigurator"
+                class="item-konfigurator"
+                hidden
+            >
+
+                <button
+                    type="button"
+                    class="item-konfigurator-schliessen"
+                    id="item-konfigurator-schliessen"
+                    aria-label="Item-Konfigurator schließen"
+                    title="Konfigurator schließen"
+                >
+                    ×
+                </button>
+
+                <!-- ========================================
+                     ITEM-KONFIGURATOR BOX
+                     ======================================== -->
+
+                <div class="konfigurator-box">
+
+                    <!-- ========================================
+                         1. KATEGORIE
+                         ======================================== -->
+
+                    <section class="item-kategorieauswahl">
+                        <h2>Kategorie</h2>
+
+                        <div class="item-kategorie-buttons">
+                            <button
+                                type="button"
+                                class="item-kategorie-button"
+                                data-kategorie="endgame-sattel"
+                            >
+                                🐎 Endgame-Sattel
+                            </button>
+                            <button
+                                type="button"
+                                class="item-kategorie-button"
+                                data-kategorie="tek-ausruestung"
+                            >
+                                🔩 Tek-Ausrüstung
+                            </button>
+                            <button
+                                type="button"
+                                class="item-kategorie-button"
+                                data-kategorie="sonstige-bauplaene"
+                            >
+                                📜 Sonstige Baupläne
+                            </button>
+                        </div>
+
+                        <!-- Kategorie-Hinweis -->
+
+                        <div
+                            id="item-kategorie-hinweis"
+                            class="item-kategorie-hinweis"
+                            hidden
+                        >
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         2. ITEM
+                         ======================================== -->
+
+                    <section class="rechner-bereich item-angaben">
+                        <h2>Item</h2>
+
+                        <div class="item-suche">
+                            <label for="item-suche-eingabe">
+                                Item suchen
+                            </label>
+
+                            <input
+                                type="text"
+                                id="item-suche-eingabe"
+                                placeholder="Name des Items eingeben"
+                                autocomplete="off"
+                            >
+
+                            <!-- Suchergebnisse -->
+
+                            <div
+                                id="item-suche-ergebnisse"
+                                class="item-suche-ergebnisse"
+                                hidden
+                            >
+                                <!-- Treffer werden per JavaScript eingefügt -->
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         3. QUALITÄT
+                         ======================================== -->
+
+                    <section class="item-qualitaet">
+                        <h2>Qualität</h2>
+
+                        <div class="item-qualitaet-buttons">
+                            <button
+                                type="button"
+                                class="item-qualitaet-button"
+                                data-qualitaet="primitiv"
+                            >
+                                Primitiv
+                            </button>
+                            <button
+                                type="button"
+                                class="item-qualitaet-button"
+                                data-qualitaet="roh"
+                            >
+                                Roh
+                            </button>
+                            <button
+                                type="button"
+                                class="item-qualitaet-button"
+                                data-qualitaet="fortgeschritten"
+                            >
+                                Fortgeschritten
+                            </button>
+                            <button
+                                type="button"
+                                class="item-qualitaet-button"
+                                data-qualitaet="ueberragend"
+                            >
+                                Überragend
+                            </button>
+                            <button
+                                type="button"
+                                class="item-qualitaet-button"
+                                data-qualitaet="meisterhaft"
+                            >
+                                Meisterhaft
+                            </button>
+                            <button
+                                type="button"
+                                class="item-qualitaet-button"
+                                data-qualitaet="legendaer"
+                            >
+                                Legendär
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         4. HERSTELLUNGSART
+                         ======================================== -->
+
+                    <section class="item-herstellungsart">
+                        <h2>Herstellungsart</h2>
+
+                        <div class="item-herstellungsart-buttons">
+                            <button
+                                type="button"
+                                class="item-herstellungsart-button"
+                                data-herstellungsart="blaupause"
+                            >
+                                📜 Blaupause
+                            </button>
+                            <button
+                                type="button"
+                                class="item-herstellungsart-button"
+                                data-herstellungsart="konvertierbar"
+                            >
+                                🔄 Konvertierbar
+                            </button>
+                            <button
+                                type="button"
+                                class="item-herstellungsart-button"
+                                data-herstellungsart="hergestellt"
+                            >
+                                🔨 Hergestellt
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         5. ITEMWERTE
+                         ======================================== -->
+
+                    <section class="rechner-bereich item-werte">
+                        <h2>Itemwerte</h2>
+
+                        <div class="item-werte-formular">
+
+                            <!-- Rüstungswert -->
+
+                            <div class="angabe-eingabe">
+                                <label for="item-ruestungswert">
+                                    Rüstungswert (optional)
+                                </label>
+                                <input
+                                    type="number"
+                                    id="item-ruestungswert"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="Rüstungswert"
+                                >
+                            </div>
+
+                            <!-- Itemrating -->
+
+                            <div class="angabe-eingabe">
+                                <label for="itemrating">
+                                    Itemrating (optional)
+                                </label>
+                                <input
+                                    type="number"
+                                    id="itemrating"
+                                    min="0"
+                                    step="0.1"
+                                    placeholder="Itemrating"
+                                >
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         6. MENGE
+                         ======================================== -->
+
+                    <section class="rechner-bereich item-menge">
+                        <h2>Menge</h2>
+
+                        <div class="angabe-eingabe">
+                            <label for="item-menge">
+                                Anzahl
+                            </label>
+                            <input
+                                type="number"
+                                id="item-menge"
+                                min="1"
+                                value="1"
+                                step="1"
+                            >
+                        </div>
+                    </section>
+
+                    <!-- ========================================
+                         AKTION
+                         ======================================== -->
+
+                    <div class="item-konfigurator-aktion">
+                        <button
+                            type="button"
+                            id="item-in-warenkorb"
+                        >
+                            🛒 Item in den Warenkorb
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+    <!-- ========================================
+         SEITENLOGIK
+         ======================================== -->
+
+    <script type="module" src="seitenlogik.js"></script>
+
+</body>
+
+</html>
