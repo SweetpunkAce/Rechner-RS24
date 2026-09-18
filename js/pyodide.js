@@ -10,7 +10,7 @@ async function initializePyodide() {
         document.getElementById("status").textContent =
             "Python wird geladen...";
 
-        const response = await fetch("python/rechner/calculator.py");
+        const response = await fetch("python/calculator.py");
 
         if (!response.ok) {
             throw new Error(

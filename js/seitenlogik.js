@@ -2,9 +2,9 @@
 // DATENBANKEN
 // ========================================
 
-import { geneDaten as geneDatenOriginal } from "./gene_daten.js";
-import { tier_daten } from "./tier_daten.js";
-import { itemDaten } from "./item_daten.js";
+import { geneDaten as geneDatenOriginal } from "../data/gene_daten.js";
+import { tier_daten } from "../data/tier_daten.js";
+import { itemDaten } from "../data/item_daten.js";
 
 // ========================================
 // ITEMPREISE
